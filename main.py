@@ -82,7 +82,7 @@ async def _test(ctx:SlashContext):
 
 ## SLASH - RPC
 @slash.slash(
-    name="edit-rpc",
+    name="editrpc",
     description="Edit your Discord RPC.",
     options=[
         create_option(
@@ -90,13 +90,70 @@ async def _test(ctx:SlashContext):
             description="RPC: Details",
             required=True,
             option_type=3
+            ),
+        create_option(
+            name="state",
+            description="RPC: State",
+            required=True,
+            option_type=3
+            ),
+        create_option(
+            name="small_image",
+            description="RPC: Small image",
+            required=True,
+            option_type=3
+            ),
+        create_option(
+            name="large_image",
+            description="RPC: Large image",
+            required=True,
+            option_type=3
+            ),
+        create_option(
+            name="small_text",
+            description="RPC: Small image tooltip",
+            required=True,
+            option_type=3
+            ),
+        create_option(
+            name="large_text",
+            description="RPC: Large image tooltip",
+            required=True,
+            option_type=3
+            ),
+        create_option(
+            name="button_text",
+            description="RPC: Button text",
+            required=True,
+            option_type=3
+            ),
+        create_option(
+            name="button_link",
+            description="RPC: Button link",
+            required=True,
+            option_type=3
             )
         ],
     guild_ids=[int(guild_id)]
 )
-async def _editrpc(ctx:SlashContext, details:str):
-    await ctx.send("d")
-
+async def _editrpc(ctx:SlashContext, details:str, state:str, small_image:str, large_image:str, small_text:str, large_text:str, button_text:str, button_link:str):
+    await ctx.send("Processing...")
+    f = open("rpc.json", "w+")
+    c = {
+        "details": details,
+        "state": state,
+        "large_image": large_image,
+        "small_image": small_image,
+        "large_text": large_text,
+        "small_text": small_text,
+        "button_text": button_text,
+        "button_link": button_link
+        }
+    cdump = json.dumps(c)
+    json.dump(c, f)
+    f.close()
+    await ctx.send(content="Updated RPC.")
+    RPC.update(details=details, state=state, large_image=large_image, small_image=small_image, large_text=large_text, small_text=small_text, buttons=[{"label": button_text, "url": button_link}])
 
 print('Launching BOT 0/100%')
 client.run(token)
