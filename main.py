@@ -29,6 +29,7 @@ with open("rpc.json") as json_file:
     small_text = data["small_text"]
     button_text = data["button_text"]
     button_link = data["button_link"]
+    json_file.close()
 
 # pip install discord asyncio aiohttp psutil discord-py-slash-command
 
