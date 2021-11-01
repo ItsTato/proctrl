@@ -30,8 +30,48 @@ if os.path.exists("config.json") == False:
 
     cdump = json.dumps(c)
     json.dump(c, f)
-    print(f"Wrote to json file the following:\n{c}")
     f.close()
+
+    module = "pypresence"
+    try:
+        exec(f"from {module} import *")
+    except ImportError as e:
+        try:
+            os.system(f"pip install {module}")
+        except Exception as e:
+            print("Uh oh! Something has broken :(")
+            sys.exit(1)
+
+    module = "discord"
+    try:
+        exec(f"from {module} import *")
+    except ImportError as e:
+        try:
+            os.system(f"python3 pip3 install {module}")
+        except Exception as e:
+            print("Uh oh! Something has broken :(")
+            sys.exit(1)
+
+    module = "discord-py-slash-command"
+    try:
+        exec(f"from discord_slash import *")
+    except ImportError as e:
+        try:
+            os.system(f"python3 pip3 install {module}")
+        except Exception as e:
+            print("Uh oh! Something has broken :(")
+            sys.exit(1)
+    
+    module = "psutil"
+    try:
+        exec(f"from {module} import *")
+    except ImportError as e:
+        try:
+            os.system(f"python3 pip3 install {module}")
+        except Exception as e:
+            print("Uh oh! Something has broken :(")
+            sys.exit(1)
+    print("Done!")
 else:
     print("Config file found, not doing anything.")
     sys.exit(0)
