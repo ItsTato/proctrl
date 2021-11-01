@@ -43,10 +43,6 @@ from discord_slash import SlashCommand, SlashContext
 from discord_slash.utils.manage_commands import create_choice, create_option
 print('Importing Discord 1000/100%')
 print('Importing extras 0/100%')
-import asyncio
-import random
-import time
-import aiohttp
 import psutil
 print('Importing extras 100/100%')
 print(f'Setting prefix to {prefix}, making "client" definition, making slash definition. 0/100%')
