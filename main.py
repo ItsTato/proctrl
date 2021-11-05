@@ -66,7 +66,7 @@ def shutdown():
 # Web Panel
 @app.route('/panel')
 def panelSite():
-    return render_template(f"panel.html",sysName=you,shutDownSite="/panel/control_actions/shutdown",reStartSite="/panel/control_actions/restart")
+    return render_template(f"panel.html",sysName=you,shutDownSite="/panel/control_actions/shutdown",reStartSite="/panel/control_actions/restart",infoEmbedRaw=f"CPU Usage: {psutil.cpu_percent}%\nMemory Usage: {psutil.virtual_memory().percent}% (Of {round(round(psutil.virtual_memory().total/1024)/1024)}MB)\nActive Python Threads: {threading.active_count()}\nBuilt Using Modules (Marked with * are from Pypi): pypresence*, discord*, discord-py-slash-command*, psutil*, flask*, threading, json, os, sys, socket\nInternet -> Discord API latency: {round(client.latency*1000)}ms\nPanel Online: True (duh..)\nLocal IP Address: {str(socket.gethostbyname(str(socket.gethostname())))}\nPort: {str(PanelPort)}")
 
 @app.route('/panel', methods=['POST'])
 def panelSite_post():
@@ -88,6 +88,8 @@ def restartSite():
     return redirect('/panel',302)
 
 def FlaskThread():
+    global panelStatus
+    panelStatus = True
     app.run(host="0.0.0.0",port=PanelPort,debug=False)
 
 # Discord Bot
@@ -206,7 +208,7 @@ async def info(ctx):
     embedVar.add_field(name=f"System", value=f"```CPU Usage: {psutil.cpu_percent()}%\nMemory Usage: {psutil.virtual_memory().percent}% (Of {round(round(round(psutil.virtual_memory().total/1024)/1024)/1024)}GB)```",inline=True)
     embedVar.add_field(name=f"Python", value=f"```Active Python Threads: {threading.active_count()}\nBuilt Using Modules (Marked with * are from Pypi): pypresence*, discord*, discord-py-slash-command*, psutil*, flask*, threading, json, os, sys, socket```",inline=True)
     embedVar.add_field(name=f"Discord Bot", value=f"```Internet -> Discord API latency: {round(client.latency*1000)}ms```",inline=True)
-    embedVar.add_field(name=f"Web Panel", value=f"[(Click here to open)](http://{str(socket.gethostbyname(str(socket.gethostname())))}:{PanelPort}/panel)```Status: OFFLINE\nLocal IP Address: {str(socket.gethostbyname(str(socket.gethostname())))}\nPort: {str(PanelPort)}```",inline=True)
+    embedVar.add_field(name=f"Web Panel", value=f"[(Click here to open)](http://{str(socket.gethostbyname(str(socket.gethostname())))}:{PanelPort}/panel)```Panel Online: {panelStatus}\nLocal IP Address: {str(socket.gethostbyname(str(socket.gethostname())))}\nPort: {str(PanelPort)}```",inline=True)
     await ctx.reply(embed=embedVar, mention_author=True)
 
 print('Launching BOT 0/100%')
