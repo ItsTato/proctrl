@@ -8,7 +8,7 @@ if os.path.exists("config.json") == False:
 
     yourname = input("How should ProCTRL call you? ")
     prefix = input("What should the bot prefix be? ")
-    status = input("Do you want to change the bot's activity (y/n)? ")
+    status = input("Do you want to change the bot's activity (y/N)? ")
     if status == "y":
         cstatus = input("What should be the status? ")
     else:
@@ -17,6 +17,9 @@ if os.path.exists("config.json") == False:
     guild = input("What is the ID of the guild you'll be using the bot on? ")
     client_id = input("What is the bot's client ID? ")
     token = input("What is the bot's token? ")
+    dashport = input("What would be the port we use for the panel [80]? ")
+    if dashport == None:
+        dashport = 80
     print("")
     print("Thanks for filling our form! We are now setting you up.")
     c = {
@@ -25,7 +28,8 @@ if os.path.exists("config.json") == False:
         "status": cstatus,
         "guild": guild,
         "token": token,
-        "client_id": client_id
+        "client_id": client_id,
+        "dashport": dashport
     }
 
     cdump = json.dumps(c)

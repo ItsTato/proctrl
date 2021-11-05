@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            ProCTRL | {{sysName}}
+        </title>
+    </head>
+    <body style="background-color: rgb(48,48,48); color: white;">
+        <h2><span style="color:greenyellow;">ProCTRL</span>@<span style="color:greenyellow;">{{sysName}}</span></h2>
+        <h1>System Controls</h1>
+        <a href="{{shutDownSite}}"><button style="background-color: #f75348; border: none; color: white; padding: 8px 16px; text-align: center; cursor: pointer; display: inline-block; text-decoration: none; font-size: 12;">Shutdown</button></a> <a href="{{reStartSite}}"><button style="background-color: #f75348; border: none; color: white; padding: 8px 16px; text-align: center; cursor: pointer; display: inline-block; text-decoration: none; font-size: 12;">Restart</button></a>
+        <h1>System Resources</h1>
+        <span><code>{{infoEmbedRaw}}</code></span>
+        <h1>Input Zone</h1>
+        Command Prompt
+        <form method='POST'>
+            <input name="commandVal">
+            <input type="submit">
+        </form>
+        Python Eval
+        <form method='POST'>
+            <input name="evalVal">
+            <input type="submit">
+        </form>
+    </body>
+</html>
