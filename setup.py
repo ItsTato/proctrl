@@ -32,46 +32,57 @@ if os.path.exists("config.json") == False:
     json.dump(c, f)
     f.close()
 
-    module = "pypresence"
-    try:
-        exec(f"from {module} import *")
-    except ImportError as e:
-        try:
-            os.system(f"pip install {module}")
-        except Exception as e:
-            print("Uh oh! Something has broken :(")
-            sys.exit(1)
-
-    module = "discord"
-    try:
-        exec(f"from {module} import *")
-    except ImportError as e:
-        try:
-            os.system(f"python3 pip3 install {module}")
-        except Exception as e:
-            print("Uh oh! Something has broken :(")
-            sys.exit(1)
-
-    module = "discord-py-slash-command"
-    try:
-        exec(f"from discord_slash import *")
-    except ImportError as e:
-        try:
-            os.system(f"python3 pip3 install {module}")
-        except Exception as e:
-            print("Uh oh! Something has broken :(")
-            sys.exit(1)
-    
-    module = "psutil"
-    try:
-        exec(f"from {module} import *")
-    except ImportError as e:
-        try:
-            os.system(f"python3 pip3 install {module}")
-        except Exception as e:
-            print("Uh oh! Something has broken :(")
-            sys.exit(1)
-    print("Done!")
 else:
-    print("Config file found, not doing anything.")
+    print("Config file found. Skipping config setup.")
     sys.exit(0)
+
+module = "pypresence"
+try:
+    exec(f"from {module} import *")
+except ImportError as e:
+    try:
+        os.system(f"pip install {module}")
+    except Exception as e:
+        print("Uh oh! Something has broken :(")
+        sys.exit(1)
+
+module = "discord"
+try:
+    exec(f"from {module} import *")
+except ImportError as e:
+    try:
+        os.system(f"python3 pip3 install {module}")
+    except Exception as e:
+        print("Uh oh! Something has broken :(")
+        sys.exit(1)
+
+module = "discord-py-slash-command"
+try:
+    exec(f"from discord_slash import *")
+except ImportError as e:
+    try:
+        os.system(f"python3 pip3 install {module}")
+    except Exception as e:
+        print("Uh oh! Something has broken :(")
+        sys.exit(1)
+    
+module = "psutil"
+try:
+    exec(f"from {module} import *")
+except ImportError as e:
+    try:
+        os.system(f"python3 pip3 install {module}")
+    except Exception as e:
+        print("Uh oh! Something has broken :(")
+        sys.exit(1)
+    
+module = "flask"
+try:
+    exec(f"from {module} import *")
+except ImportError as e:
+    try:
+        os.system(f"python3 pip3 install {module}")
+    except Exception as e:
+        print("Uh oh! Something has broken :(")
+        sys.exit(1)
+print("Done!")
