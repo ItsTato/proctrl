@@ -45,7 +45,7 @@ try:
     exec(f"from {module} import *")
 except ImportError as e:
     try:
-        os.system(f"pip install {module}")
+        os.system(f"pip3 install {module}")
     except Exception as e:
         print("Uh oh! Something has broken :(")
         sys.exit(1)
@@ -55,7 +55,7 @@ try:
     exec(f"from {module} import *")
 except ImportError as e:
     try:
-        os.system(f"python3 pip3 install {module}")
+        os.system(f"pip3 install {module}")
     except Exception as e:
         print("Uh oh! Something has broken :(")
         sys.exit(1)
@@ -65,7 +65,7 @@ try:
     exec(f"from discord_slash import *")
 except ImportError as e:
     try:
-        os.system(f"python3 pip3 install {module}")
+        os.system(f"pip3 install {module}")
     except Exception as e:
         print("Uh oh! Something has broken :(")
         sys.exit(1)
@@ -75,7 +75,7 @@ try:
     exec(f"from {module} import *")
 except ImportError as e:
     try:
-        os.system(f"python3 pip3 install {module}")
+        os.system(f"pip3 install {module}")
     except Exception as e:
         print("Uh oh! Something has broken :(")
         sys.exit(1)
@@ -85,7 +85,7 @@ try:
     exec(f"from {module} import *")
 except ImportError as e:
     try:
-        os.system(f"python3 pip3 install {module}")
+        os.system(f"pip3 install {module}")
     except Exception as e:
         print("Uh oh! Something has broken :(")
         sys.exit(1)
