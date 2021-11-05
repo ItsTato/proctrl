@@ -75,9 +75,9 @@ def panelSite_post():
             os.system(str(request.form["commandVal"]))
             return redirect('/panel')
     except:
-        if(not request.form["evalVal"]==None):
+        if(not request.form["evalpythonVal"]==None):
             try:
-                exec(str(request.form["evalVal"]))
+                exec(str(request.form["evalpythonVal"]))
             except:
                 print("Oopsie UwU")
             return redirect('/panel')
