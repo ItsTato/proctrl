@@ -34,7 +34,7 @@ with open("rpc.json") as json_file:
 
 # pip install discord asyncio aiohttp psutil discord-py-slash-command
 
-print('Importing modules 0//100%')
+print('Importing modules 0/100%')
 from pypresence import Presence
 import discord
 from discord.ext import commands
@@ -51,8 +51,8 @@ print(f'Setting prefix to {prefix}, making "client" definition, making "slash" d
 client = commands.Bot(command_prefix=str(prefix))#, intents=discord.Intents.all())
 slash = SlashCommand(client, sync_commands=True)
 RPC = Presence(client_id)
-RPC.connect()
-RPC.update(details=details, state=state, large_image=large_image, small_image=small_image, large_text=large_text, small_text=small_text, buttons=[{"label": button_text, "url": button_link}])
+# RPC.connect()
+# RPC.update(details=details, state=state, large_image=large_image, small_image=small_image, large_text=large_text, small_text=small_text, buttons=[{"label": button_text, "url": button_link}])
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "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"
 print(f'Setting prefix to {prefix}, making "client" definition, making "slash" definition, making "RPC" definition and starting it, making "app" definition. 100/100%')
@@ -64,18 +64,23 @@ def shutdown():
     os.system("shutdown /s /t  1")
 
 # Web Panel
-@app.route('/panel')
+@app.route('/panel', methods=['GET'])
 def panelSite():
-    return render_template(f"panel.html",sysName=you,shutDownSite="/panel/control_actions/shutdown",reStartSite="/panel/control_actions/restart",infoEmbedRaw=f"CPU Usage: {psutil.cpu_percent}%\nMemory Usage: {psutil.virtual_memory().percent}% (Of {round(round(psutil.virtual_memory().total/1024)/1024)}MB)\nActive Python Threads: {threading.active_count()}\nBuilt Using Modules (Marked with * are from Pypi): pypresence*, discord*, discord-py-slash-command*, psutil*, flask*, threading, json, os, sys, socket\nInternet -> Discord API latency: {round(client.latency*1000)}ms\nPanel Online: True (duh..)\nLocal IP Address: {str(socket.gethostbyname(str(socket.gethostname())))}\nPort: {str(PanelPort)}")
+    return render_template(f"panel.html",sysName=you,shutDownSite="/panel/control_actions/shutdown",reStartSite="/panel/control_actions/restart",cpu_usage=psutil.cpu_percent(),mem_usage=psutil.virtual_memory().percent,mem_total_gb=round(round(round(psutil.virtual_memory().total/1024)/1024)/1024),active_python_threads=threading.active_count(),latency=round(client.latency*1000))
 
 @app.route('/panel', methods=['POST'])
 def panelSite_post():
-    if(not request.form["commandVal"]==None):
-        os.system(str(request.form["commandVal"]))
-        return "Ran!"
-    if(not request.form["evalVal"]==None):
-        exec(str(request.form["evalVal"]))
-        return "Ran!"
+    try:
+        if(not request.form["commandVal"]==None):
+            os.system(str(request.form["commandVal"]))
+            return redirect('/panel')
+    except:
+        if(not request.form["evalVal"]==None):
+            try:
+                exec(str(request.form["evalVal"]))
+            except:
+                print("Oopsie UwU")
+            return redirect('/panel')
 
 @app.route('/panel/control_actions/shutdown')
 def shutdownSite():
@@ -87,7 +92,7 @@ def restartSite():
     restart()
     return redirect('/panel',302)
 
-def FlaskThread():
+def flaskThread():
     global panelStatus
     panelStatus = True
     app.run(host="0.0.0.0",port=PanelPort,debug=False)
@@ -95,7 +100,6 @@ def FlaskThread():
 # Discord Bot
 @client.event
 async def on_ready():
-    threading.Thread(target=FlaskThread()).start()
     await client.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name=status))
     print('Launching BOT 100/100%')
 
@@ -212,5 +216,6 @@ async def info(ctx):
     await ctx.reply(embed=embedVar, mention_author=True)
 
 print('Launching BOT 0/100%')
-if __name__ == "__main__":
-    client.run(token)
+
+threading.Thread(target=flaskThread).start()
+client.run(token)
