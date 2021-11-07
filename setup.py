@@ -89,4 +89,14 @@ except ImportError as e:
     except Exception as e:
         print("Uh oh! Something has broken :(")
         sys.exit(1)
+
+module = "flask_socketio"
+try:
+    exec(f"from {module} import *")
+except ImportError as e:
+    try:
+        os.system(f"pip3 install flask-socketio")
+    except Exception as e:
+        print("Uh oh! Something has broken :(")
+        sys.exit(1)
 print("Done!")
