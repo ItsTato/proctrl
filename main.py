@@ -32,8 +32,6 @@ with open("rpc.json") as json_file:
     button_link = data["button_link"]
     json_file.close()
 
-# pip install discord asyncio aiohttp psutil discord-py-slash-command
-
 print('Importing modules 0/100%')
 from pypresence import Presence
 import discord
@@ -46,15 +44,15 @@ import sys
 import threading
 import socket
 from flask import *
+from flask_socketio import *
 print('Importing modules 100/100%')
 print(f'Setting prefix to {prefix}, making "client" definition, making "slash" definition, making "RPC" definition and starting it, making "app" definition. 0/100%')
 client = commands.Bot(command_prefix=str(prefix))#, intents=discord.Intents.all())
 slash = SlashCommand(client, sync_commands=True)
 RPC = Presence(client_id)
-# RPC.connect()
-# RPC.update(details=details, state=state, large_image=large_image, small_image=small_image, large_text=large_text, small_text=small_text, buttons=[{"label": button_text, "url": button_link}])
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "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"
+socketio = SocketIO(app)
 print(f'Setting prefix to {prefix}, making "client" definition, making "slash" definition, making "RPC" definition and starting it, making "app" definition. 100/100%')
 
 def restart():
@@ -67,6 +65,10 @@ def shutdown():
 @app.route('/panel', methods=['GET'])
 def panelSite():
     return render_template(f"panel.html",sysName=you,shutDownSite="/panel/control_actions/shutdown",reStartSite="/panel/control_actions/restart",cpu_usage=psutil.cpu_percent(),mem_usage=psutil.virtual_memory().percent,mem_total_gb=round(round(round(psutil.virtual_memory().total/1024)/1024)/1024),active_python_threads=threading.active_count(),latency=round(client.latency*1000))
+
+@socketio.on('newData',namespace='/panel-data')
+def panel_data(message):
+    emit("My response", {"data": "Got it!"})
 
 @app.route('/panel', methods=['POST'])
 def panelSite_post():
@@ -95,7 +97,7 @@ def restartSite():
 def flaskThread():
     global panelStatus
     panelStatus = True
-    app.run(host="0.0.0.0",port=PanelPort,debug=False)
+    socketio.run(host="0.0.0.0",port=PanelPort,debug=False)
 
 # Discord Bot
 @client.event
@@ -115,87 +117,17 @@ async def on_command_error(ctx, error):
     description=f"Information about {you}'s computer.",
     guild_ids=[int(guild_id)]
 )
-async def _test(ctx:SlashContext):
+async def _stats(ctx:SlashContext):
     cpu = psutil.cpu_percent()
 
     memory_using = psutil.virtual_memory().percent
 
-    await ctx.send(f"```CPU USAGE: {cpu}%\nMEMORY USAGE: {memory_using}%\nINTERNET LATENCY: {client.latency*1000}ms```")
-
-## SLASH - RPC
-@slash.slash(
-    name="editrpc",
-    description="Edit your Discord RPC.",
-    options=[
-        create_option(
-            name="details",
-            description="RPC: Details",
-            required=True,
-            option_type=3
-            ),
-        create_option(
-            name="state",
-            description="RPC: State",
-            required=True,
-            option_type=3
-            ),
-        create_option(
-            name="small_image",
-            description="RPC: Small image",
-            required=True,
-            option_type=3
-            ),
-        create_option(
-            name="large_image",
-            description="RPC: Large image",
-            required=True,
-            option_type=3
-            ),
-        create_option(
-            name="small_text",
-            description="RPC: Small image tooltip",
-            required=True,
-            option_type=3
-            ),
-        create_option(
-            name="large_text",
-            description="RPC: Large image tooltip",
-            required=True,
-            option_type=3
-            ),
-        create_option(
-            name="button_text",
-            description="RPC: Button text",
-            required=True,
-            option_type=3
-            ),
-        create_option(
-            name="button_link",
-            description="RPC: Button link",
-            required=True,
-            option_type=3
-            )
-        ],
-    guild_ids=[int(guild_id)]
-)
-async def _editrpc(ctx:SlashContext, details:str, state:str, small_image:str, large_image:str, small_text:str, large_text:str, button_text:str, button_link:str):
-    await ctx.send("Processing...")
-    f = open("rpc.json", "w+")
-    c = {
-        "details": details,
-        "state": state,
-        "large_image": large_image,
-        "small_image": small_image,
-        "large_text": large_text,
-        "small_text": small_text,
-        "button_text": button_text,
-        "button_link": button_link
-        }
-    cdump = json.dumps(c)
-    json.dump(c, f)
-    f.close()
-    await ctx.send(content="Updated RPC.")
-    RPC.update(details=details, state=state, large_image=large_image, small_image=small_image, large_text=large_text, small_text=small_text, buttons=[{"label": button_text, "url": button_link}])
+    embedVar = discord.Embed(title="ProCTRL", description=" ", color=0x2F3136)
+    embedVar.add_field(name=f"System", value=f"```CPU Usage: {psutil.cpu_percent()}%\nMemory Usage: {psutil.virtual_memory().percent}% (Of {round(round(round(psutil.virtual_memory().total/1024)/1024)/1024)}GB)```",inline=True)
+    embedVar.add_field(name=f"Python", value=f"```Active Python Threads: {threading.active_count()}\nBuilt Using Modules (Marked with * are from Pypi): pypresence*, discord*, discord-py-slash-command*, psutil*, flask*, threading, json, os, sys, socket```",inline=True)
+    embedVar.add_field(name=f"Discord Bot", value=f"```Internet -> Discord API latency: {round(client.latency*1000)}ms```",inline=True)
+    embedVar.add_field(name=f"Web Panel", value=f"[(Click here to open)](http://{str(socket.gethostbyname(str(socket.gethostname())))}:{PanelPort}/panel)```Panel Online: {panelStatus}\nLocal IP Address: {str(socket.gethostbyname(str(socket.gethostname())))}\nPort: {str(PanelPort)}```",inline=True)
+    await ctx.send(embed=embedVar)
 
 @client.command(aliases=['runBash'])
 async def bash(ctx,*,cmd):
