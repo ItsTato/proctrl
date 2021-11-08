@@ -2,7 +2,7 @@
 
 # What is it?
 
-ProCTRL is the up-coming best way to manage your server(s) in an easy and hastle free way. It is also very light weight and can be used as a Discord bot. (How cool is that!)wq
+ProCTRL is the pterodactyl for Windows! It is the up-coming best way to manage your server(s) in an easy and hastle free way. It is also very light weight and can be used as a Discord bot. (How cool is that!)
 
 ### Installation
 
