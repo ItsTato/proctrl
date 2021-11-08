@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+
     <head>
         <title>
             ProCTRL | {{sysName}}
@@ -10,10 +14,11 @@
         <h1>System Controls</h1>
         <a href="{{shutDownSite}}"><button style="background-color: #f75348; border: none; color: white; padding: 8px 16px; text-align: center; cursor: pointer; display: inline-block; text-decoration: none; font-size: 12;">Shutdown</button></a> <a href="{{reStartSite}}"><button style="background-color: #f75348; border: none; color: white; padding: 8px 16px; text-align: center; cursor: pointer; display: inline-block; text-decoration: none; font-size: 12;">Restart</button></a>
         <h1>System Information</h1>
-        <span><code>CPU Usage: {{cpu_usage}}%
-            <p>Memory Usage: {{mem_usage}}% (Out Of {{mem_total_gb}}GB total)</p>
+        <script src="socket.js" type="text/javascript"></script>
+        <span id="pcdata"><code>CPU Usage: {{cpu_usage}}%
+            <p>Memory Usage: {{mem_usage}}% (Out Of {{mem_total_mb}}MB total)</p>
             <p>Active Python Threads: {{active_python_threads}}</p>
-            <p>Built Using Modules (Marked with * are from Pypi): pypresence*, discord*, discord-py-slash-command*, psutil*, flask*, threading, json, os, sys, socket</p>
+            <p>{{built}}</p>
             <p>Internet to Discord's API latency: {{latency}}</p>
         </code></span>
         <h1>Input Zone</h1>
