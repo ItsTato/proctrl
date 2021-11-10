@@ -1,9 +1,5 @@
 <!DOCTYPE html>
 <html>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="/socket.io/socket.io.js"></script>
-
     <head>
         <title>
             ProCTRL | {{sysName}}
@@ -11,11 +7,10 @@
     </head>
     <body style="background-color: rgb(48,48,48); color: white;">
         <h2><span style="color:greenyellow;">ProCTRL</span>@<span style="color:greenyellow;">{{sysName}}</span></h2>
-        <h1>System Controls</h1>
+        <h1>System Controls (ONLY WINDOWS SYSTEMS!)</h1>
         <a href="{{shutDownSite}}"><button style="background-color: #f75348; border: none; color: white; padding: 8px 16px; text-align: center; cursor: pointer; display: inline-block; text-decoration: none; font-size: 12;">Shutdown</button></a> <a href="{{reStartSite}}"><button style="background-color: #f75348; border: none; color: white; padding: 8px 16px; text-align: center; cursor: pointer; display: inline-block; text-decoration: none; font-size: 12;">Restart</button></a>
         <h1>System Information</h1>
-        <script src="socket.js" type="text/javascript"></script>
-        <span id="pcdata"><code>CPU Usage: {{cpu_usage}}%
+        <span id="pcdata"><code>CPU Usage: {{cpu_usage}}% <a href="{{moreCPUSite}}"><button style="background-color: #48f7bd; border: none; color: white; padding: 8px 16px; text-align: center; cursor: pointer; display: inline-block; text-decoration: none; font-size: 12;">More CPU information</button></a>
             <p>Memory Usage: {{mem_usage}}% (Out Of {{mem_total_mb}}MB total)</p>
             <p>Active Python Threads: {{active_python_threads}}</p>
             <p>{{built}}</p>
