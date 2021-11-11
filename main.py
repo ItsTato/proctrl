@@ -127,10 +127,6 @@ def completeInfoSite():
         swapAvailable=convertSize(psutil.swap_memory().free),
         swapUsed=convertSize(psutil.swap_memory().used),
         swapUsage=psutil.swap_memory().percent,
-        
-        active_python_threads=threading.active_count(),
-        built=built_using,
-        latency=round(client.latency*1000),
 
         panelSite="/panel"
     )
