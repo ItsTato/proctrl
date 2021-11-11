@@ -49,7 +49,9 @@ from discord_slash.utils.manage_commands import create_choice, create_option, up
 import psutil
 import sys
 import threading
+import platform
 import time
+import datetime
 import socket
 from flask import *
 print('Importing modules 100/100%')
@@ -63,6 +65,12 @@ print(f'Setting prefix to {prefix}, making "client" definition, making "slash" d
 
 built_using = "Built Using Modules (Marked with * are from Pypi): pypresence*, discord*, discord-py-slash-command*, psutil*, flask*, flask-socketio*, threading, json, os, sys, socket"
 
+def convertSize(bytes, suffix="B"):
+    for unit in ["", "K", "M", "G", "T", "P"]:
+        if bytes < 1024:
+            return f"{bytes:.2f}{unit}{suffix}"
+        bytes /= 1024
+
 def restart():
     os.system("shutdown /r /t  1")
 
@@ -72,7 +80,60 @@ def shutdown():
 # Web Panel
 @app.route('/panel', methods=['GET'])
 def panelSite():
-    return render_template(f"panel.html",sysName=you,shutDownSite="/panel/control_actions/shutdown",reStartSite="/panel/control_actions/restart",cpu_usage=psutil.cpu_percent(),mem_usage=psutil.virtual_memory().percent,mem_total_mb=round(round(psutil.virtual_memory().total/1024)/1024),active_python_threads=threading.active_count(),latency=round(client.latency*1000),built=built_using)
+    return render_template(
+        "panel.html",
+        sysName=you,
+        shutDownSite="/panel/control_actions/shutdown",
+        reStartSite="/panel/control_actions/restart",
+        cpu_usage=psutil.cpu_percent(),
+        mem_usage=psutil.virtual_memory().percent,
+        mem_total=convertSize(psutil.virtual_memory().total),
+        active_python_threads=threading.active_count(),
+        latency=round(client.latency*1000),
+        built=built_using
+    )
+
+@app.route('/panel/completeinfo', methods=['GET'])
+def completeInfoSite():
+    cpuCoreHTMLRaw=""
+    for i, percentage in enumerate(psutil.cpu_percent(percpu=True,interval=1)):
+        cpuCoreHTMLRaw=f"{cpuCoreHTMLRaw} || Core #{i} Usage: {percentage}%"
+    cpuCoreHTMLRaw=f"{cpuCoreHTMLRaw} ||"
+    return render_template(
+        "completeInfo.html",
+        userName=you,
+
+        sysName=platform.uname().system,
+        nodeName=platform.uname().node,
+        release=platform.uname().release,
+        version=platform.uname().version,
+        machine=platform.uname().machine,
+        processor=platform.uname().processor,
+
+        cpuPhCores=psutil.cpu_count(logical=False),
+        cpuTotalCores=psutil.cpu_count(logical=True),
+        cpuMaxFreq=f"{psutil.cpu_freq().max:.2f}",
+        cpuMinFreq=f"{psutil.cpu_freq().min:.2f}",
+        cpuCurFreq=f"{psutil.cpu_freq().current:.2f}",
+        cpuCores=cpuCoreHTMLRaw,
+        cpuUsage=psutil.cpu_percent(),
+
+        totalMemory=convertSize(psutil.virtual_memory().total),
+        memoryAvailable=convertSize(psutil.virtual_memory().available),
+        memoryUsed=convertSize(psutil.virtual_memory().used),
+        memoryUsage=convertSize(psutil.virtual_memory().percent),
+
+        totalSwap=convertSize(psutil.swap_memory().total),
+        swapAvailable=convertSize(psutil.swap_memory().free),
+        swapUsed=convertSize(psutil.swap_memory().used),
+        swapUsage=psutil.swap_memory().percent,
+        
+        active_python_threads=threading.active_count(),
+        built=built_using,
+        latency=round(client.latency*1000),
+
+        panelSite="/panel"
+    )
 
 @app.route('/panel', methods=['POST'])
 def panelSite_post():
