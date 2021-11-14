@@ -60,7 +60,6 @@ if os.path.exists("config.json") == False:
 
 else:
     print("Config file found. Skipping config setup.")
-    sys.exit(0)
 
 module = "pypresence"
 try:
@@ -103,6 +102,16 @@ except ImportError as e:
         sys.exit(1)
     
 module = "flask"
+try:
+    exec(f"from {module} import *")
+except ImportError as e:
+    try:
+        os.system(f"pip3 install {module}")
+    except Exception as e:
+        print("Uh oh! Something has broken :(")
+        sys.exit(1)
+
+module = "tabulate"
 try:
     exec(f"from {module} import *")
 except ImportError as e:

@@ -53,6 +53,7 @@ import platform
 import time
 import datetime
 import socket
+from tabulate import *
 from flask import *
 print('Importing modules 100/100%')
 print(f'Setting prefix to {prefix}, making "client" definition, making "slash" definition, making "socketio" definition, making "app" definition. 0/100%')
@@ -95,10 +96,15 @@ def panelSite():
 
 @app.route('/panel/completeinfo', methods=['GET'])
 def completeInfoSite():
-    cpuCoreHTMLRaw=""
+    cpuData=[]
     for i, percentage in enumerate(psutil.cpu_percent(percpu=True,interval=1)):
-        cpuCoreHTMLRaw=f"{cpuCoreHTMLRaw} || Core #{i} Usage: {percentage}%"
-    cpuCoreHTMLRaw=f"{cpuCoreHTMLRaw} ||"
+        core_name = f"Core {i}"
+        core_usage = f"{percentage}%"
+
+        cpuData.append((
+            core_name,
+            core_usage
+        ))
     return render_template(
         "completeInfo.html",
         userName=you,
@@ -115,7 +121,7 @@ def completeInfoSite():
         cpuMaxFreq=f"{psutil.cpu_freq().max:.2f}",
         cpuMinFreq=f"{psutil.cpu_freq().min:.2f}",
         cpuCurFreq=f"{psutil.cpu_freq().current:.2f}",
-        cpuCores=cpuCoreHTMLRaw,
+        cpuCores=tabulate(cpuData,headers=("Core #", "Usage %")),
         cpuUsage=psutil.cpu_percent(),
 
         totalMemory=convertSize(psutil.virtual_memory().total),
