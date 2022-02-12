@@ -5,7 +5,7 @@ ProCTRL is fairly easy to use, first, you will need to download all of the code.
 After this, run the `setup.bat` file. This will start the setup. Please give it all the required details.
 When this is done, open the `run.bat` to finally start the bot.
 Pretty easy, ain't it?
-# The home of ProCTRL!
-ProCTRL is the best way of managing your pc from within a Discord bot.
+# What IS ProCTRL??
+ProCTRL is the best way of managing your pc from within a Discord bot or website!
 # Why does it exist?
-Idk. Why you asking me, kiddo?
+Idk.
