@@ -1,26 +1,29 @@
-# MIT License
-# 
-# Copyright (c) 2021 ItsTato
-# 
-# Permission is hereby granted, free of charge, to any person obtaining a copy
-# of this software and associated documentation files (the "Software"), to deal
-# in the Software without restriction, including without limitation the rights
-# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-# copies of the Software, and to permit persons to whom the Software is
-# furnished to do so, subject to the following conditions:
-#
-# The above copyright notice and this permission notice shall be included in all
-# copies or substantial portions of the Software.
-# 
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-# SOFTWARE.
+"""
 
-## CONFIG
+MIT License
+
+Copyright (c) 2022 ItsTato
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+"""
+
 import json
 import os
 print("Loading user config.")
@@ -40,65 +43,40 @@ with open("config.json") as json_file:
     json_file.close()
 
 print('Importing modules 0/100%')
-from pypresence import Presence
-import discord
 from discord.ext import commands
 from discord.ext.commands import has_permissions
-from discord_slash import SlashCommand, SlashContext
-from discord_slash.utils.manage_commands import create_choice, create_option, update_single_command_permissions
-import psutil
-import sys
-import threading
-import platform
-import time
-import datetime
-import socket
+import discord,psutil,sys,threading,platform,socket,datetime
 from tabulate import *
 from flask import *
 print('Importing modules 100/100%')
-print(f'Setting prefix to {prefix}, making "client" definition, making "slash" definition, making "socketio" definition, making "app" definition. 0/100%')
-client = commands.Bot(command_prefix=str(prefix))#, intents=discord.Intents.all())
-slash = SlashCommand(client, sync_commands=True)
-RPC = Presence(client_id)
-app = Flask(__name__)
-app.config["SECRET_KEY"] = "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"
-print(f'Setting prefix to {prefix}, making "client" definition, making "slash" definition, making "socketio" definition, making "app" definition. 100/100%')
-
-built_using = "Built Using Modules (Marked with * are from Pypi): pypresence*, discord*, discord-py-slash-command*, psutil*, flask*, flask-socketio*, threading, json, os, sys, socket"
+print(f'Setting prefix to {prefix}, making "client" definition, making "site" definition. 0/100%')
+client = commands.Bot(command_prefix=str(prefix), intents=discord.Intents.all(),case_insensitive=True,strip_after_prefix=True)
+site = Flask(__name__)
+site.config["SECRET_KEY"] = "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"
+print(f'Setting prefix to {prefix}, making "client" definition, making "site" definition. 100/100%')
 
 def convertSize(bytes, suffix="B"):
     for unit in ["", "K", "M", "G", "T", "P"]:
         if bytes < 1024:
-            return f"{bytes:.2f}{unit}{suffix}"
+            return {"value":f"{bytes:.2f}","unit":f"{unit}{suffix}"}
         bytes /= 1024
 
 def restart():
-    os.system("shutdown /r /t  1")
+    f = os
+    a = f.system
+    a("shutdown /r /t  1")
 
 def shutdown():
-    os.system("shutdown /s /t  1")
+    f = os
+    a = f.system
+    a("shutdown /s /t  1")
 
 # Web Panel
-@app.route('/panel', methods=['GET'])
+@site.route('/panel', methods=['GET'])
 def panelSite():
-    return render_template(
-        "panel.html",
-        sysName=you,
-        shutDownSite="/panel/control_actions/shutdown",
-        reStartSite="/panel/control_actions/restart",
-        cpu_usage=psutil.cpu_percent(),
-        mem_usage=psutil.virtual_memory().percent,
-        mem_total=convertSize(psutil.virtual_memory().total),
-        active_python_threads=threading.active_count(),
-        latency=round(client.latency*1000),
-        built=built_using
-    )
-
-@app.route('/panel/completeinfo', methods=['GET'])
-def completeInfoSite():
     cpuData=[]
     for i, percentage in enumerate(psutil.cpu_percent(percpu=True,interval=1)):
-        core_name = f"Core {i}"
+        core_name = f"#{i}"
         core_usage = f"{percentage}%"
 
         cpuData.append((
@@ -106,65 +84,87 @@ def completeInfoSite():
             core_usage
         ))
     return render_template(
-        "completeInfo.html",
-        userName=you,
+        "panel.html",
+        systemNickname=you,
+        activePythonThreads=threading.active_count(),
+        latency=round(client.latency*1000),
 
-        sysName=platform.uname().system,
+        day=datetime.datetime.fromtimestamp(psutil.boot_time()).day,
+        month=datetime.datetime.fromtimestamp(psutil.boot_time()).month,
+        year=datetime.datetime.fromtimestamp(psutil.boot_time()).year,
+        hour=datetime.datetime.fromtimestamp(psutil.boot_time()).hour,
+        minute=datetime.datetime.fromtimestamp(psutil.boot_time()).minute,
+        second=datetime.datetime.fromtimestamp(psutil.boot_time()).second,
+
+        systemName=platform.uname().system,
         nodeName=platform.uname().node,
         release=platform.uname().release,
         version=platform.uname().version,
         machine=platform.uname().machine,
         processor=platform.uname().processor,
 
-        cpuPhCores=psutil.cpu_count(logical=False),
-        cpuTotalCores=psutil.cpu_count(logical=True),
+        cpuCores=psutil.cpu_count(logical=False),
+        cpuLogicalCores=psutil.cpu_count(logical=True),
         cpuMaxFreq=f"{psutil.cpu_freq().max:.2f}",
         cpuMinFreq=f"{psutil.cpu_freq().min:.2f}",
         cpuCurFreq=f"{psutil.cpu_freq().current:.2f}",
-        cpuCores=tabulate(cpuData,headers=("Core #", "Usage %")),
+        cpuCoreUsage=tabulate(cpuData,headers=("Core #", "Usage %")),
         cpuUsage=psutil.cpu_percent(),
 
-        totalMemory=convertSize(psutil.virtual_memory().total),
-        memoryAvailable=convertSize(psutil.virtual_memory().available),
-        memoryUsed=convertSize(psutil.virtual_memory().used),
-        memoryUsage=convertSize(psutil.virtual_memory().percent),
+        memoryTotal=convertSize(psutil.virtual_memory().total)["value"],
+        memoryTotalUnit=convertSize(psutil.virtual_memory().total)["unit"],
+        memoryAvailable=convertSize(psutil.virtual_memory().available)["value"],
+        memoryAvailableUnit=convertSize(psutil.virtual_memory().available)["unit"],
+        memoryUsed=convertSize(psutil.virtual_memory().used)["value"],
+        memoryUsedUnit=convertSize(psutil.virtual_memory().used)["unit"],
+        memoryUsage=psutil.virtual_memory().percent,
 
-        totalSwap=convertSize(psutil.swap_memory().total),
-        swapAvailable=convertSize(psutil.swap_memory().free),
-        swapUsed=convertSize(psutil.swap_memory().used),
-        swapUsage=psutil.swap_memory().percent,
-
-        panelSite="/panel"
+        swapTotal=convertSize(psutil.swap_memory().total)["value"],
+        swapTotalUnit=convertSize(psutil.swap_memory().total)["unit"],
+        swapAvailable=convertSize(psutil.swap_memory().free)["value"],
+        swapAvailableUnit=convertSize(psutil.swap_memory().free)["unit"],
+        swapUsed=convertSize(psutil.swap_memory().used)["value"],
+        swapUsedUnit=convertSize(psutil.swap_memory().used)["unit"],
+        swapUsage=psutil.swap_memory().percent
     )
 
-@app.route('/panel', methods=['POST'])
+@site.route('/panel/controls', methods=['GET'])
+def controlsSite():
+    return render_template(
+        "controls.html",
+        systemNickname=you
+    )
+
+@site.route('/panel/controls', methods=['POST'])
 def panelSite_post():
     try:
         if(not request.form["commandVal"]==None):
-            os.system(str(request.form["commandVal"]))
-            return redirect('/panel')
+            f = os
+            a = f.system
+            a(str(request.form["commandVal"]))
+            return redirect('/panel/controls')
     except:
         if(not request.form["evalpythonVal"]==None):
             try:
                 exec(str(request.form["evalpythonVal"]))
             except:
                 print("Oopsie UwU")
-            return redirect('/panel')
+            return redirect('/panel/controls')
 
-@app.route('/panel/control_actions/shutdown')
+@site.route('/panel/controls/shutdown')
 def shutdownSite():
     shutdown()
-    return redirect('/panel',302)
+    return redirect('/controls',302)
 
-@app.route('/panel/control_actions/restart')
+@site.route('/panel/controls/restart')
 def restartSite():
     restart()
-    return redirect('/panel',302)
+    return redirect('/controls',302)
 
 def flaskThread():
     global panelStatus
     panelStatus = True
-    app.run(host="0.0.0.0",port=PanelPort,debug=False)
+    site.run(host="0.0.0.0",port=PanelPort,debug=False)
 
 # Discord Bot
 @client.event
@@ -178,29 +178,13 @@ async def on_command_error(ctx, error):
     embedVar.add_field(name=f"Failed to execute action", value=f"Error: `{error}`")
     await ctx.reply(embed=embedVar, mention_author=True)
 
-## SLASH - STATS
-@slash.slash(
-    name="stats",
-    description=f"Information about {you}'s computer.",
-    guild_ids=[int(guild_id)]
-)
-async def _stats(ctx:SlashContext):
-    cpu = psutil.cpu_percent()
-
-    memory_using = psutil.virtual_memory().percent
-
-    embedVar = discord.Embed(title="ProCTRL", description=" ", color=0x2F3136)
-    embedVar.add_field(name=f"System", value=f"```CPU Usage: {psutil.cpu_percent()}%\nMemory Usage: {psutil.virtual_memory().percent}% (Of {round(round(round(psutil.virtual_memory().total/1024)/1024)/1024)}GB)```",inline=True)
-    embedVar.add_field(name=f"Python", value=f"```Active Python Threads: {threading.active_count()}\n{built_using}```",inline=True)
-    embedVar.add_field(name=f"Discord Bot", value=f"```Internet -> Discord API latency: {round(client.latency*1000)}ms```",inline=True)
-    embedVar.add_field(name=f"Web Panel", value=f"```Panel Online: {panelStatus}\nLocal IP Address: {str(socket.gethostbyname(str(socket.gethostname())))}\nPort: {str(PanelPort)}```",inline=True)
-    await ctx.send(embed=embedVar)
-
 @client.command(aliases=['runBash'])
 async def bash(ctx,*,cmd):
-    await ctx.send(content=os.system(cmd))
+    f = os
+    a = f.system
+    await ctx.send(content=a(cmd))
 
-@client.command()
+@client.command(aliases=['run','runCode','runEval'])
 async def eval(ctx,*,cmd):
     exec(cmd)
     await ctx.send(content=f"Ran code: ```{cmd}```")
@@ -208,10 +192,9 @@ async def eval(ctx,*,cmd):
 @client.command(aliases=["information","botinfo","botinformation", "sysinfo", "systeminfo", "systeminformation", "sysinformation"])
 async def info(ctx):
     embedVar = discord.Embed(title="ProCTRL", description=" ", color=0x2F3136)
-    embedVar.add_field(name=f"System", value=f"```CPU Usage: {psutil.cpu_percent()}%\nMemory Usage: {psutil.virtual_memory().percent}% (Of {round(round(round(psutil.virtual_memory().total/1024)/1024)/1024)}GB)```",inline=True)
-    embedVar.add_field(name=f"Python", value=f"```Active Python Threads: {threading.active_count()}\n{built_using}```",inline=True)
-    embedVar.add_field(name=f"Discord Bot", value=f"```Internet -> Discord API latency: {round(client.latency*1000)}ms```",inline=True)
-    embedVar.add_field(name=f"Web Panel", value=f"```Panel Online: {panelStatus}\nLocal IP Address: {str(socket.gethostbyname(str(socket.gethostname())))}\nPort: {str(PanelPort)}```",inline=True)
+    embedVar.add_field(name=f"Python", value=f"Active Python Threads: {threading.active_count()}",inline=True)
+    embedVar.add_field(name=f"Discord Bot", value=f"Ping: {round(client.latency*1000)}ms",inline=True)
+    embedVar.add_field(name=f"Web Panel", value=f"Panel Online: {panelStatus}\nLocal IP Address: [{str(socket.gethostbyname(str(socket.gethostname())))}](http://{str(socket.gethostbyname(str(socket.gethostname())))}:{str(PanelPort)}/panel)\nPort: {str(PanelPort)}",inline=True)
     await ctx.reply(embed=embedVar, mention_author=True)
 
 print('Launching BOT 0/100%')

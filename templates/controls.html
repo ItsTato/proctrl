@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+
+<html>
+
+    <style>
+        :root {
+            --dark-bg-color: rgb(20, 20, 20);
+            --dark-sb-color: rgb(10, 10, 10);
+            --dark-main-txt-color: rgb(255, 255, 255);
+            --dark-secondary-txt-color: rgb(194, 194, 194);
+            --dark-card-bg-color: rgb(10, 10, 10);
+            --dark-font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .body {
+            background-color: var(--dark-bg-color);
+            color: var(--dark-main-txt-color);
+        }
+
+        .topbar {
+            background-color: var(--dark-sb-color);
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 60px;
+            }
+            .server {
+                position: absolute;
+                right: 6px;
+                top: 7px;
+                text-decoration: none;
+                }
+
+                .userName {
+                    position: relative;
+                    right: 8px;
+                    top: 5px;
+                    color: var(--dark-main-txt-color);
+                    font-size: 28px;
+                    text-decoration: none;
+                }
+
+                .userName:hover {
+                    text-decoration: underline;
+                    cursor: pointer;
+                }
+
+                    .image {
+                        border-radius: 50%;
+                    }
+                    .image:hover {
+                        border-radius: 25%;
+                    }
+        .sidebar {
+            background-color: var(--dark-sb-color);
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 256px;
+            height: 100%;
+            }
+            .header {
+                color: var(--dark-main-txt-color);
+                text-align: center;
+                font-size: 48px;
+                font-family: var(--dark-font-family);
+                width: 256px;
+                position: relative;
+                top: 2px;
+            }
+            .item {
+                position: relative;
+                top: 5px;
+                color: var(--dark-secondary-txt-color);
+                text-align: center;
+                font-family: var(--dark-font-family);
+                }
+                .button {
+                    background-color: var(--dark-sb-color);
+                    cursor: pointer;
+                    border: none;
+                    height: 40px;
+                    width: 220px;
+                    border-radius: 2%;
+                    font-family: var(--dark-font-family);
+                    text-align: center;
+                    }
+                    .selected {
+                        background-color: var(--dark-bg-color);
+                        opacity: 65%;
+                        cursor: not-allowed;
+                        border: none;
+                        height: 40px;
+                        width: 220px;
+                        border-radius: 2%;
+                        font-family: var(--dark-font-family);
+                        }
+                        .text {
+                            font-size: 26px;
+                            color: var(--dark-secondary-txt-color);
+                            font-family: var(--dark-font-family);
+                        }
+                    .text {
+                        font-size: 26px;
+                        color: var(--dark-secondary-txt-color);
+                        font-family: var(--dark-font-family);
+                    }
+                .button:hover {
+                    background-color: var(--dark-bg-color);
+                }
+
+    .card11 {
+        position: absolute;
+        left: 275px;
+        top: 75px;
+        background-color: var(--dark-card-bg-color);
+        border-radius: 3%;
+        height: 52px;
+        width: 262px;
+        text-align: center;
+        border: none;
+    }
+
+    .card12 {
+        position: absolute;
+        left: 550px;
+        top: 75px;
+        background-color: var(--dark-card-bg-color);
+        border-radius: 3%;
+        height: 52px;
+        width: 262px;
+        text-align: center;
+        border: none;
+    }
+
+    .cardtext {
+        position: relative;
+        top: 8px;
+        font-size: 16px;
+        font-family: var(--dark-font-family);
+        color: var(--dark-main-txt-color);
+    }
+
+    .unit {
+        position: absolute;
+        right: 5%;
+    }
+
+    .execute {
+        background-color: rgb(255, 44, 44);
+        border: 1px solid rgb(255, 44, 44);
+        border-radius: 3px;
+        cursor: pointer;
+        color:rgb(255, 255, 255)
+    }
+
+    .execute:hover {
+        color:rgb(255, 44, 44);
+        border: 1px solid rgb(255, 44, 44);
+        background-color: var(--dark-card-bg-color);
+        
+    }
+    </style>
+
+    <head>
+        <title>Manage {{systemNickname}} | ProCTRL</title>
+    </head>
+
+    <body class="body">
+        <div class="home">
+            <div class="container">
+                <div class="card11">
+                    <div class="cardtext">
+                        <div>
+                            <bold>Shutdown</bold>
+                        </div>
+                        <a href="/panel/controls/shutdown"><button class="execute">EXECUTE</button></a>
+                    </div>
+                </div>
+
+
+                <div class="card12">
+                    <div class="cardtext">
+                        <div>
+                            <bold>Restart</bold>
+                        </div>
+                        <a href="/panel/controls/restart"><button class="execute">EXECUTE</button></a>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="topbar">
+                <div class="server">
+                    <span class="userName">{{systemNickname}}</span>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <div class="header">
+                    ProCTRL
+                </div>
+
+                <div class="item">
+                    <a href="/panel">
+                        <button class="button">
+                            <span class="text">Home</span>
+                        </button>
+                    </a>
+                </div>
+
+                <div class="item">
+                    <button class="button selected">
+                        <span class="text">Controls</span>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </body>
+
+</html>
