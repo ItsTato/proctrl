@@ -15,6 +15,6 @@ ProCTRL is the best way of managing your pc from within a Discord bot or website
 
 Idk.
 
-#Developer(s)
+# Developer[s]
 
 [![Discord Presence](https://lanyard.cnrad.dev/api/900401428739272725)](https://discord.com/users/900401428739272725)
