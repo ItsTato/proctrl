@@ -7,6 +7,7 @@ ProCTRL is the pterodactyl for Windows! It is the up-coming best way to manage y
 ### Installation
 
 **[TEMPORARY]** Take a look out our [README](https://github.com/ItsTato/proctrl/blob/main/README.md)
+
 ~~Please refer to [our wiki](https://github.com/ItsTato/proctrl/wiki) whilst installing, running or modifying.~~
 
 ### Use Cases
